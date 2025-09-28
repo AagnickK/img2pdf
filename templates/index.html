@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Converter - Premium</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+    <div class="cursor-glow" id="cursorGlow"></div>
+    <div class="bg-particles" id="bgParticles"></div>
+    
+    <nav class="floating-nav">
+        <div class="nav-item active">Convert</div>
+        <div class="nav-item"> Creator </div>
+    </nav>
+    
+    <div class="container">
+        <div class="hero-section">
+            <h1 class="animated-title">
+                <span class="letter">P</span><span class="letter">D</span><span class="letter">F</span>
+                <span class="letter space"> </span>
+                <span class="letter">C</span><span class="letter">o</span><span class="letter">n</span><span class="letter">v</span><span class="letter">e</span><span class="letter">r</span><span class="letter">t</span><span class="letter">e</span><span class="letter">r</span>
+            </h1>
+            <p class="subtitle">Transform your images into premium compressed PDFs</p>
+        </div>
+        
+        <div class="upload-card glass-card" id="uploadArea">
+            <div class="upload-content">
+                <div class="upload-icon">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7,10 12,15 17,10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                </div>
+                <h3>Drop your images here</h3>
+                <p>or <span class="browse-link">browse files</span></p>
+                <div class="supported-formats">
+                    <span>JPG</span><span>JPEG</span><span>PNG</span>
+                </div>
+            </div>
+            <input type="file" id="fileInput" multiple accept=".jpg,.jpeg,.png" hidden>
+        </div>
+        
+        <div class="file-grid" id="fileList"></div>
+        
+        <div class="quality-selector glass-card" id="qualitySelector" style="display: none;">
+            <h3>Compression Quality</h3>
+            <div class="quality-options">
+                <div class="quality-option" data-quality="95">
+                    <div class="quality-label">High Quality</div>
+                    <div class="quality-desc">Larger file size</div>
+                </div>
+                <div class="quality-option active" data-quality="75">
+                    <div class="quality-label">Balanced</div>
+                    <div class="quality-desc">Recommended</div>
+                </div>
+                <div class="quality-option" data-quality="50">
+                    <div class="quality-label">High Compression</div>
+                    <div class="quality-desc">Smaller file size</div>
+                </div>
+            </div>
+            <div class="quality-slider">
+                <input type="range" id="qualityRange" min="10" max="100" value="75">
+                <div class="quality-info">
+                    <div class="quality-value">Quality: <span id="qualityValue">75</span>%</div>
+                    <div class="estimated-size" id="estimatedSize">Estimated size: Calculating...</div>
+                </div>
+            </div>
+        </div>
+        
+        <button id="convertBtn" class="premium-btn" disabled>
+            <span class="btn-text">Convert to PDF</span>
+            <div class="btn-glow"></div>
+        </button>
+        
+        <div class="progress-container" id="progress" style="display: none;">
+            <div class="progress-ring">
+                <svg width="60" height="60">
+                    <circle cx="30" cy="30" r="25" class="progress-bg"/>
+                    <circle cx="30" cy="30" r="25" class="progress-fill"/>
+                </svg>
+            </div>
+            <span class="progress-text">Processing images...</span>
+        </div>
+        
+        <div class="error-card" id="error" style="display: none;"></div>
+    </div>
+
+    <div class="credit-page" id="creditPage" style="display: none;">
+        <div class="credit-content glass-card">
+            <button class="close-btn" id="closeCredit">&times;</button>
+            <h2>created by AAGNICK with 💖</h2>
+            <div class="creator-info">
+                <div class="creator-name">PDF Converter Pro</div>
+                <div class="creator-desc">Premium image to PDF conversion tool</div>
+            </div>
+            <div class="tech-stack">
+                <h3>Built with</h3>
+                <div class="tech-items">
+                    <span>Flask</span>
+                    <span>Pillow</span>
+                    <span>ReportLab</span>
+                    <span>PikePDF</span>
+                    <span>GSAP</span>
+                </div>
+            </div>
+            <div class="features-list">
+                <h3>Features</h3>
+                <ul>
+                    <li>Drag & drop file upload</li>
+                    <li>Real-time quality adjustment</li>
+                    <li>File size estimation</li>
+                    <li>Premium dark UI</li>
+                    <li>Mouse tracking effects</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
